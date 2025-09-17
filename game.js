@@ -122,6 +122,10 @@ class GameClient {
                 
             case 'players_moved':
                 Object.assign(this.players, message.players);
+                // Update our own player reference
+                if (this.myPlayerId && this.players[this.myPlayerId]) {
+                    this.myPlayer = this.players[this.myPlayerId];
+                }
                 this.updateViewport();
                 this.draw();
                 break;
